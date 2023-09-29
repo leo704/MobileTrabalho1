@@ -5,6 +5,7 @@ export default function TelaBuscar() {
   return (
     <View>
       <Text>TelaBuscar</Text>
+      <Text>Teste de commit</Text>
     </View>
   )
 }
