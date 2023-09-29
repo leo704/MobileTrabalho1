@@ -1,11 +1,12 @@
 import { View, Text } from 'react-native'
 import React from 'react'
+import styles from './Styles'
+
 
 export default function TelaBuscar() {
   return (
-    <View>
+    <View style={styles.todasTelas}>
       <Text>TelaBuscar</Text>
-      <Text>Teste de commit</Text>
     </View>
   )
 }
