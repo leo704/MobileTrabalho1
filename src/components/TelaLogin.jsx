@@ -7,7 +7,7 @@ const TelaLogin = () => {
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
   const [autenticar, setAutenticar] = useState(false);
-  const navigation = useNavigation();
+  const nav = useNavigation();
   const usuarios = [
     { name: 'maria', senha: '1234' },
     { name: 'joao', senha: '5678' },
@@ -18,7 +18,7 @@ const TelaLogin = () => {
     const usuarioEncontrado = usuarios.find((user) => user.name === usuario && user.senha === senha);
     if (usuarioEncontrado) {
       setAutenticar(true);
-      navigation.navigate('Logado');
+      nav.navigate('Logado');
     } else {
       Alert.alert('Erro!', 'Usuario ou senha incorreto(s).');
     }
