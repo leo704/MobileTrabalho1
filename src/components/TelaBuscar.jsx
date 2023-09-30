@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, StyleSheet, Image } from 'react-native';
 
 const DATA = [

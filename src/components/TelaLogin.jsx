@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { View, TextInput, Button, StyleSheet, Text, Alert, Image, KeyboardAvoidingView } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
@@ -20,7 +20,7 @@ const TelaLogin = () => {
       setAutenticar(true);
       nav.navigate('Logado');
     } else {
-      Alert.alert('Erro!', 'Usuario ou senha incorreto(s).');
+      Alert.alert('Erro!', 'Usuário ou senha incorreto(s).');
     }
   };
 
@@ -34,7 +34,7 @@ const TelaLogin = () => {
         <TextInput
           keyboardType='email-address'
           style={styles.input}
-          placeholder="Nome de usuario ou email"
+          placeholder="Nome de usuário ou email"
           onChangeText={(text) => setUsuario(text)}
           value={usuario}
         />
@@ -89,8 +89,8 @@ export default TelaLogin;
     .Adicionar elementos VISUAIS que simulem um login
     .Estilizar
         -Logo
-        -Entrada de usu�rio e senha
-        -Op��o de logar com google
+        -Entrada de usuário e senha
+        -Opção de logar com google
 */
 
 

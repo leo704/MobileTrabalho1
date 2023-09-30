@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
+﻿import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 
@@ -8,7 +8,7 @@ export default function TelaInicio() {
       <Image style={estilo.imagem} source={require('../assets/logoSemText.png')} />
       {/* Logo ficar fixa no topo */}
       <ScrollView style={styles.todasTelas}>
-        <Text>Tela do inicio</Text>
+        <Text style={estilo.texto}>PROMOÇÕES</Text>
       </ScrollView>
     </View >
   )
@@ -25,11 +25,25 @@ estilo = StyleSheet.create(
       width: 85,
       height: 60,
 
-    }
+    },
+    texto: {
+      textAlign: 'center',
+      fontFamily: 'sans-serif',
+      fontWeight: '900',
+      fontSize: 20,
+      height: 33,
+      borderWidth: 1,
+      borderColor: 'black',
+      paddingVertical: 2,
+      paddingHorizontal: 10,
+      marginVertical: 16,
+      marginHorizontal: 16,
+      color: 'black'
+    },
   }
 );
 
 
 /*
-  .Adicionar um carrossel de fotos/promo��es
+  .Adicionar um carrossel de fotos/promoções
 */
