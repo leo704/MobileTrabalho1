@@ -6,7 +6,7 @@ import styles from './Styles'
 export default function TelaBuscar() {
   return (
     <View style={styles.todasTelas}>
-      <Text>TelaBuscar</Text>
+      <Text>TelaBuscarrr</Text>
     </View>
   )
 }
