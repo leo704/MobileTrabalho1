@@ -20,16 +20,16 @@ if (usuarioEncontrado) {
   setAutenticar(true);
   navigation.navigate('Logado');
 } else {
-  Alert.alert('Erro!', 'Usuário ou senha incorreto(s).');
+  Alert.alert('Erro!', 'Usuï¿½rio ou senha incorreto(s).');
 }
   };
 
 return (
   <View style={styles.container}>
-    <Text style={styles.header}>Faça login</Text>
+    <Text style={styles.header}>Faï¿½a login</Text>
     <TextInput
       style={styles.input}
-      placeholder="Nome de usuário ou email"
+      placeholder="Nome de usuï¿½rio ou email"
       onChangeText={(text) => setUsuario(text)}
       value={usuario}
     />
@@ -76,8 +76,8 @@ export default TelaLogin;
     .Adicionar elementos VISUAIS que simulem um login
     .Estilizar
         -Logo
-        -Entrada de usuário e senha
-        -Opção de logar com google
+        -Entrada de usuï¿½rio e senha
+        -Opï¿½ï¿½o de logar com google
 */
 
 
