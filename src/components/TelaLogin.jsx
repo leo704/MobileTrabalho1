@@ -15,35 +15,35 @@ const TelaLogin = () => {
   ]; // Mudar para contexto e adicionar na tela de perfil
 
   const FazLogin = () => {
-    const usuarioEncontrado = usuarios.find((user) => user.name === usuario && user.senha === senha);
-    if (usuarioEncontrado) {
-      setAutenticar(true);
-      navigation.navigate('Logado');
-    } else {
-      Alert.alert('Erro!', 'Usuário ou senha incorreto(s).');
-    }
+    const usuarioEncontrado = usuarios.find(usuarios) => usuarios.name === usuario && usuarios.senha === senha);
+if (usuarioEncontrado) {
+  setAutenticar(true);
+  navigation.navigate('Logado');
+} else {
+  Alert.alert('Erro!', 'Usuário ou senha incorreto(s).');
+}
   };
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Faça login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nome de usuário ou email"
-        onChangeText={(text) => setUsuario(text)}
-        value={usuario}
-      />
-      <TextInput
-        keyboardType='numeric'
-        style={styles.input}
-        placeholder="Senha"
-        onChangeText={(text) => setSenha(text)}
-        value={senha}
-        secureTextEntry={true}
-      />
-      <Button title="Entrar" onPress={FazLogin} color={'black'} />
-    </View>
-  );
+return (
+  <View style={styles.container}>
+    <Text style={styles.header}>Faça login</Text>
+    <TextInput
+      style={styles.input}
+      placeholder="Nome de usuário ou email"
+      onChangeText={(text) => setUsuario(text)}
+      value={usuario}
+    />
+    <TextInput
+      keyboardType='numeric'
+      style={styles.input}
+      placeholder="Senha"
+      onChangeText={(text) => setSenha(text)}
+      value={senha}
+      secureTextEntry={true}
+    />
+    <Button title="Entrar" onPress={FazLogin} color={'black'} />
+  </View>
+);
 };
 
 const styles = StyleSheet.create({
