@@ -1,6 +1,7 @@
-﻿import { View, Text, StyleSheet, ScrollView, Image } from 'react-native'
+﻿import { View, Text, StyleSheet, ScrollView, Image, Dimensions } from 'react-native'
 import React from 'react'
 import styles from './Styles'
+import Carousel from 'react-native-reanimated-carousel'
 
 export default function TelaInicio() {
   return (
@@ -36,8 +37,6 @@ estilo = StyleSheet.create(
       borderColor: 'black',
       paddingVertical: 2,
       paddingHorizontal: 10,
-      marginVertical: 16,
-      marginHorizontal: 16,
       color: 'black'
     },
   }
@@ -46,4 +45,5 @@ estilo = StyleSheet.create(
 
 /*
   .Adicionar um carrossel de fotos/promoções
+  npm install react-native-reanimated-carousel
 */

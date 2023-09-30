@@ -11,7 +11,7 @@ export default function TelaPerfil() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.texto}>-NOME DO USUARIO- </Text>
+        <Text style={styles.texto}>-NOME DO USUÁRIO- </Text>
       </View>
       <View style={styles.botaoContainer}>
         <Button title='Fazer logout' onPress={logout} color={'black'} />
