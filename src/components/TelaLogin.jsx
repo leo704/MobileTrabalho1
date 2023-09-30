@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, Alert, Image } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, Alert, Image, KeyboardAvoidingView } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 
@@ -11,7 +11,7 @@ const TelaLogin = () => {
   const usuarios = [
     { name: 'maria', senha: '1234' },
     { name: 'joao', senha: '5678' },
-    { name: 'pedro', senha: '5555' },
+    { name: 'pedro@email.com', senha: '5555' },
   ]; // Mudar para contexto e adicionar na tela de perfil
 
   const FazLogin = () => {
@@ -25,25 +25,31 @@ const TelaLogin = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Image style={styles.imagem} source={require('../assets/logo.png')} />
-      <Text style={styles.header}>LOGIN</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Nome de usuario ou email"
-        onChangeText={(text) => setUsuario(text)}
-        value={usuario}
-      />
-      <TextInput
-        keyboardType='numeric'
-        style={styles.input}
-        placeholder="Senha"
-        onChangeText={(text) => setSenha(text)}
-        value={senha}
-        secureTextEntry={true}
-      />
-      <Button title="Entrar" onPress={FazLogin} color={'black'} />
-    </View>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'android' ? 'padding' : 'height'}
+      style={styles.container}>
+      <View>
+        <Image style={styles.imagem} source={require('../assets/logo.png')} />
+        <Text style={styles.header}>LOGIN</Text>
+        <TextInput
+          keyboardType='email-address'
+          style={styles.input}
+          placeholder="Nome de usuario ou email"
+          onChangeText={(text) => setUsuario(text)}
+          value={usuario}
+        />
+        <TextInput
+          keyboardType='numeric'
+          style={styles.input}
+          placeholder="Senha"
+          onChangeText={(text) => setSenha(text)}
+          value={senha}
+          secureTextEntry={true}
+        />
+        <Button title="Entrar" onPress={FazLogin} color={'black'} />
+      </View>
+    </KeyboardAvoidingView>
+
   );
 };
 

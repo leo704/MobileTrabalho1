@@ -1,16 +1,16 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import styles from './Styles'
 
 export default function TelaInicio() {
   return (
-    <View style={styles.todasTelas}>
+    <ScrollView style={styles.todasTelas}>
       <Text>Tela do inicio</Text>
-    </View>
+    </ScrollView>
   )
 }
 
 
 /*
-  .Adicionar um carrossel de fotos/promoÃ§Ãµes
+  .Adicionar um carrossel de fotos/promoções
 */

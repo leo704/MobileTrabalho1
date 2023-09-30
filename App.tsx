@@ -23,7 +23,7 @@ function Logado() {
         headerShown: false,
         tabBarActiveTintColor: 'black',
         tabBarActiveBackgroundColor: '#ffcd6d',
-        tabBarInactiveBackgroundColor: '#ffae14',
+        tabBarInactiveBackgroundColor: '#ffad15',
         tabBarShowLabel: true, //mostrar label
         //tabBarLabelStyle:{fontSize:15}
         tabBarLabelStyle: estiloPadrao
