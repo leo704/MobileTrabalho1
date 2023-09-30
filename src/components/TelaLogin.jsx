@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text, Alert } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, Alert, Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
 
@@ -26,6 +26,7 @@ const TelaLogin = () => {
 
   return (
     <View style={styles.container}>
+      <Image style={styles.imagem} source={require('../assets/logo.png')} />
       <Text style={styles.header}>LOGIN</Text>
       <TextInput
         style={styles.input}
@@ -48,13 +49,14 @@ const TelaLogin = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffcd6d',
+    backgroundColor: '#ffad15',
     flex: 1,
     justifyContent: 'center',
     padding: 16,
   },
   header: {
-    fontSize: 24,
+    color: 'black',
+    fontSize: 28,
     marginBottom: 16,
     textAlign: 'center',
   },
@@ -66,6 +68,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     marginBottom: 16,
   },
+
+  imagem: {
+
+    resizeMode: 'cover',
+    alignSelf: 'center',
+  }
 });
 
 export default TelaLogin;
@@ -75,8 +83,8 @@ export default TelaLogin;
     .Adicionar elementos VISUAIS que simulem um login
     .Estilizar
         -Logo
-        -Entrada de usu?rio e senha
-        -Op??o de logar com google
+        -Entrada de usuário e senha
+        -Opção de logar com google
 */
 
 
