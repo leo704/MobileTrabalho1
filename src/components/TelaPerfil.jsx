@@ -32,6 +32,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   botaoContainer: {
-    paddingBottom: 0,
+    padding: 16
   },
 });
