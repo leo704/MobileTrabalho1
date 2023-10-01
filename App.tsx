@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from 'react-native';
+﻿import { View, Text, StyleSheet } from 'react-native';
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -23,7 +23,7 @@ function Logado() {
         headerShown: false,
         tabBarActiveTintColor: 'black',
         tabBarActiveBackgroundColor: '#ffcd6d',
-        tabBarInactiveBackgroundColor: '#ffae14',
+        tabBarInactiveBackgroundColor: '#ffad15',
         tabBarShowLabel: true, //mostrar label
         //tabBarLabelStyle:{fontSize:15}
         tabBarLabelStyle: estiloPadrao
@@ -31,7 +31,7 @@ function Logado() {
       <navBottom.Screen
         name="Inicio"
         options={{
-          tabBarInactiveTintColor: 'gray', //Por padr�o
+          tabBarInactiveTintColor: 'gray', //Por padrão
           tabBarIcon: () => { return (<Icon name='house' size={24} color='black' />) }
         }}
         component={TelaInicio}

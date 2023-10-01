@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+ï»¿import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, StyleSheet, Image } from 'react-native';
 
 const DATA = [
   { id: '1', name: 'AirPods', image: require('../assets/airpods.jpg') },
-  { id: '2', name: 'Carreador de Celular', image: require('../assets/carregador.jpg') },
+  { id: '2', name: 'Carregador de Celular', image: require('../assets/carregador.jpg') },
   { id: '3', name: 'Case de Celular', image: require('../assets/case.jpg') },
   { id: '4', name: 'SmartWatch', image: require('../assets/smartwatch.jpg') },
 ];
@@ -12,10 +12,9 @@ const TelaBuscar = () => {
   const [pesquisa, setPesquisa] = useState('');
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
 
-  const handleSearch = (prod) => {
+  const fazPesquisa = (prod) => {
     setPesquisa(prod);
 
-    // Simulação de pesquisa local
     const filteredResults = DATA.filter((item) =>
       item.name.toLowerCase().includes(prod.toLowerCase())
     );
@@ -27,7 +26,7 @@ const TelaBuscar = () => {
       <TextInput
         style={styles.input}
         placeholder="Digite sua pesquisa"
-        onChangeText={handleSearch}
+        onChangeText={fazPesquisa}
         value={pesquisa}
       />
       <FlatList

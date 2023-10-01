@@ -1,4 +1,4 @@
-import { View, Text, Button, StyleSheet } from 'react-native'
+﻿import { View, Text, Button, StyleSheet, Image } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 
@@ -11,7 +11,7 @@ export default function TelaPerfil() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text>TelaPerfil</Text>
+        <Text style={styles.texto}>-NOME DO USUÁRIO- </Text>
       </View>
       <View style={styles.botaoContainer}>
         <Button title='Fazer logout' onPress={logout} color={'black'} />
@@ -26,12 +26,25 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
   },
+  texto: {
+    textAlign: 'center',
+    backgroundColor: 'black',
+    fontFamily: 'sans-serif',
+    fontWeight: '900',
+    fontSize: 20,
+    height: 33,
+    borderWidth: 1,
+    borderColor: 'black',
+    paddingVertical: 2,
+    paddingHorizontal: 10,
+    marginVertical: 16,
+    marginHorizontal: 16,
+    color: 'white'
+  },
   content: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   botaoContainer: {
-    paddingBottom: 10,
+    padding: 16
   },
 });
