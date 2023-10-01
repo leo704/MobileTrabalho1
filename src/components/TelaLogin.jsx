@@ -15,21 +15,21 @@ const TelaLogin = () => {
   ]; // Mudar para contexto e adicionar na tela de perfil
 
   const FazLogin = () => {
-    const usuarioEncontrado = usuarios.find(usuarios) => usuarios.name === usuario && usuarios.senha === senha);
+    const usuarioEncontrado = usuarios.find((usuarios) => usuarios.name === usuario && usuarios.senha === senha);
 if (usuarioEncontrado) {
   setAutenticar(true);
   navigation.navigate('Logado');
 } else {
-  Alert.alert('Erro!', 'Usu�rio ou senha incorreto(s).');
+  Alert.alert('Erro!', 'Usuário ou senha incorreto(s).');
 }
   };
 
 return (
   <View style={styles.container}>
-    <Text style={styles.header}>Fa�a login</Text>
+    <Text style={styles.header}>Faça login</Text>
     <TextInput
       style={styles.input}
-      placeholder="Nome de usu�rio ou email"
+      placeholder="Nome de usuário ou email"
       onChangeText={(text) => setUsuario(text)}
       value={usuario}
     />
