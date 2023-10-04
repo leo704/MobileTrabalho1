@@ -22,7 +22,7 @@ export default function TelaPerfil() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffcd6d',
+    backgroundColor: '#e4a0ff',
     flex: 1,
     flexDirection: 'column',
   },

@@ -10,6 +10,7 @@ import {
   Dimensions,
   ImageBackground,
   ScrollView,
+  keyboardAppearance
 } from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
@@ -22,11 +23,14 @@ const TelaLogin = () => {
   const [senha, setSenha] = useState('');
   const [autenticar, setAutenticar] = useState(false);
   const nav = useNavigation();
+  
   const usuarios = [
-    {name: 'maria', senha: '1234'},
-    {name: 'joao', senha: '5678'},
-    {name: 'pedro@email.com', senha: '5555'},
+    {id:1, name: 'maria', senha: '1234'},
+    {id:2, name: 'joao', senha: '5678'},
+    {id:3, name: 'pedro@email.com', senha: '5555'},
   ]; // Mudar para contexto e adicionar na tela de perfil
+
+  
 
   const FazLogin = () => {
     const usuarioEncontrado = usuarios.find(
@@ -41,10 +45,11 @@ const TelaLogin = () => {
   };
 
   return (
-    <ScrollView>
-      <KeyboardAvoidingView
+    <SafeAreaView>
+    <ScrollView style={styles.container}>
+      {/* <KeyboardAvoidingView
         behavior={Platform.OS === 'android' ? 'padding' : 'height'}
-        style={styles.container}>
+        style={styles.container}> */}
         <ImageBackground
           source={require('../assets/planoDefundoLoja.png')}
           resizeMode="cover"
@@ -54,7 +59,7 @@ const TelaLogin = () => {
           </View>
         </ImageBackground>
         <View style={styles.loginBox}>
-          <Text style={styles.textoRoxoMaior}>
+          <Text style={styles.textoRoxo}>
             Bem-vindo, faça login para continuar
           </Text>
           <View>
@@ -65,6 +70,7 @@ const TelaLogin = () => {
               placeholder="Nome de usuário ou email"
               onChangeText={text => setUsuario(text)}
               value={usuario}
+              keyboardAppearance='dark'
             />
           </View>
           <View>
@@ -88,11 +94,12 @@ const TelaLogin = () => {
               }
             }}
             buttonStyle={styles.botaoLogin}
-            titleStyle={styles.textoBotao}
+            titleStyle={{fontSize: 30, fontWeight: 'bold',}}
           />
         </View>
-      </KeyboardAvoidingView>
+      {/* </KeyboardAvoidingView> */}
       </ScrollView>
+      </SafeAreaView>
   );
 };
 
@@ -115,17 +122,17 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   input: {
-    height: 40,
+    height: 50,
     width: larguraJanela * 0.85,
     borderWidth: 2,
     borderColor: '#32123f',
-    borderRadius: 20,
+    borderRadius: 15,
   },
   divLogo: {
-    backgroundColor: 'rgba(255,255,255,0.5)',
+    backgroundColor: 'rgba(255,255,255,0.55)',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 20,
+    borderRadius: 40,
     height: alturaJanela / 4,
     width: alturaJanela / 4,
   },
@@ -137,20 +144,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#32123f',
   },
-  textoRoxoMaior: {
-    color: '#32123f',
-    fontSize: 25,
-    fontWeight: 'bold',
-  },
   botaoLogin: {
     backgroundColor: '#32123f',
-    paddingHorizontal: larguraJanela / 10,
+    paddingHorizontal: larguraJanela / 12,
     paddingVertical: alturaJanela * 0.01,
-    borderRadius: 20,
-  },
-  textoBotao: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    borderRadius: 20,    
   },
 });
 
