@@ -6,7 +6,7 @@ import Carousel from 'react-native-reanimated-carousel'
 export default function TelaInicio() {
   return (
     <View style={estilo.topo}>
-      <Image style={estilo.imagem} source={require('../assets/logoSemText.png')} />
+      <Image style={estilo.imagem} source={require('../assets/logo.png')} />
       {/* Logo ficar fixa no topo */}
       <ScrollView style={styles.todasTelas}>
         <Text style={estilo.texto}>PROMOÇÕES</Text>
@@ -25,6 +25,7 @@ estilo = StyleSheet.create(
       alignSelf: 'center',
       width: 85,
       height: 60,
+      backgroundColor:'rgba(255,255,255,0.5)',
 
     },
     texto: {

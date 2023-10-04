@@ -13,10 +13,10 @@ export default function TelaPerfil() {
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.texto}>{usuarios.name}</Text>
+        <Text style={styles.texto}>Bem vindo(a), {usuarios.name}</Text>
       </View>
       <View style={styles.botaoContainer}>
-        <Button title='Fazer logout' onPress={logout} color={'black'} />
+        <Button title='Fazer logout' onPress={logout} color={'#32123f'} />
       </View>
     </View>
   );
@@ -30,18 +30,18 @@ const styles = StyleSheet.create({
   },
   texto: {
     textAlign: 'center',
-    backgroundColor: 'black',
     fontFamily: 'sans-serif',
-    fontWeight: '900',
-    fontSize: 20,
-    height: 33,
-    borderWidth: 1,
-    borderColor: 'black',
+    fontWeight: 'bold',
+    fontSize: 25,
+    height: 40,
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: '#32123f',
     paddingVertical: 2,
     paddingHorizontal: 10,
     marginVertical: 16,
     marginHorizontal: 16,
-    color: 'white'
+    color: '#32123f'
   },
   content: {
     flex: 1,
