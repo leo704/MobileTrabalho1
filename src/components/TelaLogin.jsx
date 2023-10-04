@@ -1,4 +1,4 @@
-﻿import React, {useState} from 'react';
+﻿import React, { useState, useContext } from 'react';
 import {
   View,
   TextInput,
@@ -12,9 +12,10 @@ import {
   ScrollView,
   keyboardAppearance
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {Button} from 'react-native-elements';
+import { useNavigation } from '@react-navigation/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Button } from 'react-native-elements';
+import { ContextoUser } from '../contexto/UserContext';
 
 //instalar npm install react-native-elements
 
@@ -23,14 +24,8 @@ const TelaLogin = () => {
   const [senha, setSenha] = useState('');
   const [autenticar, setAutenticar] = useState(false);
   const nav = useNavigation();
-  
-  const usuarios = [
-    {id:1, name: 'maria', senha: '1234'},
-    {id:2, name: 'joao', senha: '5678'},
-    {id:3, name: 'pedro@email.com', senha: '5555'},
-  ]; // Mudar para contexto e adicionar na tela de perfil
+  const [usuarios] = useContext(ContextoUser);
 
-  
 
   const FazLogin = () => {
     const usuarioEncontrado = usuarios.find(
@@ -38,6 +33,7 @@ const TelaLogin = () => {
     );
     if (usuarioEncontrado) {
       setAutenticar(true);
+      usuarios.name = usuario;
       nav.navigate('Logado');
     } else {
       Alert.alert('Erro!', 'Usuário ou senha incorreto(s).');
@@ -46,8 +42,8 @@ const TelaLogin = () => {
 
   return (
     <SafeAreaView>
-    <ScrollView style={styles.container}>
-      {/* <KeyboardAvoidingView
+      <ScrollView style={styles.container}>
+        {/* <KeyboardAvoidingView
         behavior={Platform.OS === 'android' ? 'padding' : 'height'}
         style={styles.container}> */}
         <ImageBackground
@@ -94,12 +90,12 @@ const TelaLogin = () => {
               }
             }}
             buttonStyle={styles.botaoLogin}
-            titleStyle={{fontSize: 30, fontWeight: 'bold',}}
+            titleStyle={{ fontSize: 30, fontWeight: 'bold', }}
           />
         </View>
-      {/* </KeyboardAvoidingView> */}
+        {/* </KeyboardAvoidingView> */}
       </ScrollView>
-      </SafeAreaView>
+    </SafeAreaView>
   );
 };
 
@@ -148,7 +144,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#32123f',
     paddingHorizontal: larguraJanela / 12,
     paddingVertical: alturaJanela * 0.01,
-    borderRadius: 20,    
+    borderRadius: 20,
   },
 });
 

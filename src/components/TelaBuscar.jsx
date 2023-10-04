@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   texto: {
-    backgroundColor: '#ffcd6d',
+    backgroundColor: '#e4a0ff',
     flex: 1,
   },
   imagem: {

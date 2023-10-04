@@ -1,17 +1,19 @@
 ﻿import { View, Text, Button, StyleSheet, Image } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigation } from '@react-navigation/native'
+import { ContextoUser } from '../contexto/UserContext';
 
 //adicionar contexto de login
 
 export default function TelaPerfil() {
   const nav = useNavigation();
   const logout = () => { nav.navigate('Login'); };
+  const [usuarios, setUsuarios] = useContext(ContextoUser);
 
   return (
     <View style={styles.container}>
       <View style={styles.content}>
-        <Text style={styles.texto}>-NOME DO USUÁRIO- </Text>
+        <Text style={styles.texto}>{usuarios.name}</Text>
       </View>
       <View style={styles.botaoContainer}>
         <Button title='Fazer logout' onPress={logout} color={'black'} />
