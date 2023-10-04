@@ -18,7 +18,7 @@ export default function TelaInicio() {
 estilo = StyleSheet.create(
   {
     topo: {
-      backgroundColor: '#ffae15',
+      backgroundColor: '#32123f',
     },
     imagem: {
       resizeMode: 'cover',

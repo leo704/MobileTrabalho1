@@ -1,6 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, StyleSheet, Image } from 'react-native';
 
+
 const DATA = [
   { id: '1', name: 'AirPods', image: require('../assets/airpods.jpg') },
   { id: '2', name: 'Carregador de Celular', image: require('../assets/carregador.jpg') },
@@ -45,12 +46,12 @@ const TelaBuscar = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#ffcd6d',
+    backgroundColor: '#e4a0ff',
     flex: 1,
     padding: 10,
   },
   input: {
-    backgroundColor: '#ffcd6d',
+    backgroundColor: '#e4a0ff',
     height: 40,
     borderWidth: 1,
     borderRadius: 8,
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   texto: {
-    backgroundColor: '#ffcd6d',
+    backgroundColor: '#e4a0ff',
     flex: 1,
   },
   imagem: {

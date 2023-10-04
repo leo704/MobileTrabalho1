@@ -10,11 +10,11 @@ import TelaCarrinho from './src/components/TelaCarrinho';
 import TelaPerfil from './src/components/TelaPerfil';
 import styles from './src/components/Styles';
 import Icon from 'react-native-vector-icons/FontAwesome6';
+import UserProvider from './src/contexto/UserContext';
 
 const navStack = createNativeStackNavigator();
 const navBottom = createBottomTabNavigator();
 const estiloPadrao = styles.fonteMaior;
-
 
 function Logado() {
   return (
@@ -22,56 +22,70 @@ function Logado() {
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: 'black',
-        tabBarActiveBackgroundColor: '#ffcd6d',
-        tabBarInactiveBackgroundColor: '#ffad15',
+        tabBarActiveBackgroundColor: '#e4a0ff',
+        tabBarInactiveBackgroundColor: '#32123f',
         tabBarShowLabel: true, //mostrar label
         //tabBarLabelStyle:{fontSize:15}
-        tabBarLabelStyle: estiloPadrao
+        tabBarLabelStyle: estiloPadrao,
       }}>
       <navBottom.Screen
         name="Inicio"
         options={{
           tabBarInactiveTintColor: 'gray', //Por padrão
-          tabBarIcon: () => { return (<Icon name='house' size={24} color='black' />) }
+          tabBarIcon: () => {
+            return <Icon name="house" size={24} color="white" />;
+          },
         }}
         component={TelaInicio}
       />
       <navBottom.Screen
         name="Buscar"
         component={TelaBuscar}
-        options={{ tabBarIcon: () => { return (<Icon name='magnifying-glass' size={24} color='black' />) } }}
+        options={{
+          tabBarIcon: () => {
+            return <Icon name="magnifying-glass" size={24} color="white" />;
+          },
+        }}
       />
       <navBottom.Screen
         name="Carrinho"
         component={TelaCarrinho}
-        options={{ tabBarIcon: () => { return (<Icon name='cart-shopping' size={24} color='black' />) } }}
+        options={{
+          tabBarIcon: () => {
+            return <Icon name="cart-shopping" size={24} color="white" />;
+          },
+        }}
       />
       <navBottom.Screen
         name="Perfil"
         component={TelaPerfil}
-        options={{ tabBarIcon: () => { return (<Icon solid name='user' size={24} color='black' />) } }}
+        options={{
+          tabBarIcon: () => {
+            return <Icon solid name="user" size={24} color="white" />;
+          },
+        }}
       />
     </navBottom.Navigator>
-
   );
 }
 
 export default function App() {
   return (
     <NavigationContainer>
-      <navStack.Navigator initialRouteName='Login'>
-        <navStack.Screen
-          name="Login"
-          component={TelaLogin}
-          options={{ headerShown: false }}
-
-        />
-        <navStack.Screen
-          name="Logado"
-          component={Logado}
-          options={{ headerShown: false }}
-        />
-      </navStack.Navigator>
+      <UserProvider>
+        <navStack.Navigator initialRouteName="Login">
+          <navStack.Screen
+            name="Login"
+            component={TelaLogin}
+            options={{ headerShown: false }}
+          />
+          <navStack.Screen
+            name="Logado"
+            component={Logado}
+            options={{ headerShown: false }}
+          />
+        </navStack.Navigator>
+      </UserProvider>
     </NavigationContainer>
   );
-};
+}
