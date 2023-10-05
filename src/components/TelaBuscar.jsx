@@ -1,23 +1,17 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useContext } from 'react';
 import { View, TextInput, FlatList, Text, StyleSheet, Image } from 'react-native';
-
-
-const DATA = [
-  { id: '1', name: 'AirPods', image: require('../assets/airpods.jpg') },
-  { id: '2', name: 'Carregador de Celular', image: require('../assets/carregador.jpg') },
-  { id: '3', name: 'Case de Celular', image: require('../assets/case.jpg') },
-  { id: '4', name: 'SmartWatch', image: require('../assets/smartwatch.jpg') },
-];
+import { ProdContext } from '../contexto/ProdutosContext';
 
 const TelaBuscar = () => {
+  const [Produtos] = useContext(ProdContext);
   const [pesquisa, setPesquisa] = useState('');
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
 
   const fazPesquisa = (prod) => {
     setPesquisa(prod);
 
-    const filteredResults = DATA.filter((item) =>
-      item.name.toLowerCase().includes(prod.toLowerCase())
+    const filteredResults = Produtos.filter((item) =>
+      item.title.toLowerCase().includes(prod.toLowerCase())
     );
     setResultadoPesquisa(filteredResults);
   };
@@ -34,8 +28,8 @@ const TelaBuscar = () => {
         data={resultadoPesquisa}
         renderItem={({ item }) => (
           <View>
-            <Text style={styles.texto}>{item.name}</Text>
-            <Image source={item.image} style={styles.imagem} />
+            <Text style={styles.texto}>{item.title}</Text>
+            <Image source={{ uri: item.thumbnail }} style={styles.imagem} />
           </View>
         )}
         keyExtractor={(item) => item.id.toString()}
