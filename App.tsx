@@ -22,7 +22,6 @@ function Logado() {
     <navBottom.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: 'black',
         tabBarActiveBackgroundColor: '#e4a0ff',
         tabBarInactiveBackgroundColor: '#32123f',
         tabBarShowLabel: true, //mostrar label

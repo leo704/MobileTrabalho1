@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
   todasTelas: {
-    backgroundColor: '#e4a0ff',
+    backgroundColor: '#fff',
     height: '100%'
   },
   fonteMaior: {
@@ -12,7 +12,3 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-
-
-//#ffcd6d fraco
-//#ffae15 forte

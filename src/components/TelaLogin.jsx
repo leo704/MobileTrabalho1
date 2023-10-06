@@ -51,7 +51,7 @@ const TelaLogin = () => {
           resizeMode="cover"
           style={styles.planoDeFundoTelaLogin}>
           <View style={styles.divLogo}>
-            <Image source={require('../assets/logo.png')} style={styles.logo} />
+            <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
           </View>
         </ImageBackground>
         <View style={styles.loginBox}>
@@ -133,8 +133,8 @@ const styles = StyleSheet.create({
     width: alturaJanela / 4,
   },
   logo: {
-    height: alturaJanela / 4,
-    width: alturaJanela / 4,
+    height: alturaJanela / 5,
+    width: alturaJanela / 5,
   },
   textoRoxo: {
     fontSize: 20,

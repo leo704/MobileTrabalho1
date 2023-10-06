@@ -6,7 +6,7 @@ import styles from './Styles'
 export default function TelaCarrinho() {
   return (
     <View style={styles.todasTelas}>
-      <Text>TelaCarrinho</Text>
+      <Text style={{alignSelf:'center', justifyContent:'center'}}>Carrinho vazio :(</Text>
     </View>
   )
 }
