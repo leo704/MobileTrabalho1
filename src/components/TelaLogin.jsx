@@ -1,4 +1,4 @@
-﻿import React, { useState, useContext } from 'react';
+﻿import React, { useState, useContext, useEffect } from 'react';
 import {
   View,
   TextInput,
@@ -6,11 +6,9 @@ import {
   Text,
   Alert,
   Image,
-  KeyboardAvoidingView,
   Dimensions,
   ImageBackground,
   ScrollView,
-  keyboardAppearance
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -20,20 +18,22 @@ import { ContextoUser } from '../contexto/UserContext';
 //instalar npm install react-native-elements
 
 const TelaLogin = () => {
-  const [usuario, setUsuario] = useState('');
-  const [senha, setSenha] = useState('');
   const [autenticar, setAutenticar] = useState(false);
   const nav = useNavigation();
-  const [usuarios] = useContext(ContextoUser);
+  const { usuarios, buscarUsuarios, setUsuarios, usuarioLogado, setUsuarioLogado } = useContext(ContextoUser);
+  const [usuario, setUsuario] = useState('');
+  const [senha, setSenha] = useState('');
 
+  useEffect(() => {
+    buscarUsuarios();
+  }, []);
 
   const FazLogin = () => {
-    const usuarioEncontrado = usuarios.find(
-      user => user.name === usuario && user.senha === senha,
-    );
+    const usuarioEncontrado = usuarios && usuarios.find((user) => user.username === usuario && user.senha === senha);
+
     if (usuarioEncontrado) {
+      setUsuarioLogado(usuarioEncontrado);
       setAutenticar(true);
-      usuarios.name = usuario;
       nav.navigate('Logado');
     } else {
       Alert.alert('Erro!', 'Usuário ou senha incorreto(s).');
@@ -43,9 +43,6 @@ const TelaLogin = () => {
   return (
     <SafeAreaView>
       <ScrollView style={styles.container}>
-        {/* <KeyboardAvoidingView
-        behavior={Platform.OS === 'android' ? 'padding' : 'height'}
-        style={styles.container}> */}
         <ImageBackground
           source={require('../assets/planoDefundoLoja.png')}
           resizeMode="cover"
@@ -72,7 +69,7 @@ const TelaLogin = () => {
           <View>
             <Text style={styles.textoRoxo}>Senha</Text>
             <TextInput
-              keyboardType="numeric"
+              keyboardType="default"
               style={styles.input}
               placeholder="Senha"
               onChangeText={text => setSenha(text)}
@@ -93,7 +90,6 @@ const TelaLogin = () => {
             titleStyle={{ fontSize: 30, fontWeight: 'bold', }}
           />
         </View>
-        {/* </KeyboardAvoidingView> */}
       </ScrollView>
     </SafeAreaView>
   );
