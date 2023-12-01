@@ -61,35 +61,33 @@ export default function UserProvider({ children }) {
         }
     }
 
-    function atualizaListaUsuarioEditado(response) {
-        console.log(response);
-        const { id: updatedUserId } = response.data;
-        const updatedUsers = usuarios.map((user) =>
-            user.id === updatedUserId
-                ? {
-                    ...user,
-                    nome,
-                    email,
-                    senha,
-                    username,
-                    endereco,
-                    cidade,
-                    estado,
-                }
-                : user
-        );
-        setUsuarios(updatedUsers);
+    function atualizaListaUsuarioEditado(resp) {
+        if (resp.status == 202) {
+            console.log(resp.data, "edit");
+            const index = usuarios.findIndex(item => item.id == id);
+            let users = usuarios;
 
-        const usuarioAtualizado = {
-            nome,
-            email,
-            senha,
-            username,
-            endereco,
-            cidade,
-            estado,
-        };
-        setAtualizacao(usuarioAtualizado);
+            users[index] = nome;
+            users[index] = email;
+            users[index] = senha;
+            users[index] = username;
+            users[index] = endereco;
+            users[index] = cidade;
+            users[index] = estado;
+            setUsuarios(users);
+
+            let atualizacao = usuarios;
+            atualizacao.nome = nome;
+            atualizacao.email = email;
+            atualizacao.senha = senha;
+            atualizacao.username = username;
+            atualizacao.endereco = endereco;
+            atualizacao.cidade = cidade;
+            atualizacao.estado = estado;
+
+            setUsuarioLogado(atualizacao);
+            setAtualizacao(atualizacao);
+        }
     }
 
     function atualizaListaUsuarioNovo(response) {
@@ -129,7 +127,7 @@ export default function UserProvider({ children }) {
     }
 
     function resetUsuario() {
-        setUsuarioLogado(null);
+        setUsuarioLogado('');
     }
 
     return (
@@ -158,7 +156,7 @@ export default function UserProvider({ children }) {
                 atualizacao,
                 resetUsuario,
                 setUsuarioLogado,
-                usuarioLogado
+                usuarioLogado,
             }}
         >
             {children}
