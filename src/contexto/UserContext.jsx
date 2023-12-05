@@ -5,7 +5,7 @@ export const ContextoUser = createContext();
 
 export default function UserProvider({ children }) {
     const [usuarios, setUsuarios] = useState([]);
-    const [atualizacao, setAtualizacao] = useState({});
+    const [atualizacao, setAtualizacao] = useState([{}]);
     const [id, setId] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
@@ -61,26 +61,39 @@ export default function UserProvider({ children }) {
         }
     }
 
-    function atualizaListaUsuarioEditado(response) {
-        console.log(response);
-        const { id: updatedUserId } = response.data;
-        const updatedUsers = usuarios.map((user) =>
-            user.id === updatedUserId
-                ? {
-                    ...user,
-                    nome,
-                    email,
-                    senha,
-                    username,
-                    endereco,
-                    cidade,
-                    estado,
-                }
-                : user
-        );
-        setUsuarios(updatedUsers);
+    function atualizaListaUsuarioEditado(resp) {
+        if (resp.status == 202) {
+            console.log(resp.data, "edit");
+            const index = usuarios.findIndex(item => item.id == id);
+            let users = usuarios;
 
-        const usuarioAtualizado = {
+            users[index] = nome;
+            users[index] = email;
+            users[index] = senha;
+            users[index] = username;
+            users[index] = endereco;
+            users[index] = cidade;
+            users[index] = estado;
+            setUsuarios(users);
+
+            let atualizacao = usuarios;
+            atualizacao.nome = nome;
+            atualizacao.email = email;
+            atualizacao.senha = senha;
+            atualizacao.username = username;
+            atualizacao.endereco = endereco;
+            atualizacao.cidade = cidade;
+            atualizacao.estado = estado;
+
+            setUsuarioLogado(atualizacao);
+            setAtualizacao(atualizacao);
+        }
+    }
+
+    function atualizaListaUsuarioNovo(response) {
+        console.log("atualizaListaUsuarioNovo", response.data);
+        let {
+            id,
             nome,
             email,
             senha,
@@ -88,48 +101,41 @@ export default function UserProvider({ children }) {
             endereco,
             cidade,
             estado,
-        };
-        setAtualizacao(usuarioAtualizado);
-    }
-
-    function atualizaListaUsuarioNovo(response) {
-        console.log("atualizaListaUsuarioNovo", response.data);
-        const {
-            id: newUserId,
-            nome: newUserName,
-            email: newUserEmail,
-            senha: newUserSenha,
-            username: newUserUsername,
-            endereco: newUserEndereco,
-            cidade: newUserCidade,
-            estado: newUserEstado,
         } = response.data;
 
-        const newUser = {
-            id: newUserId,
-            nome: newUserName,
-            email: newUserEmail,
-            senha: newUserSenha,
-            username: newUserUsername,
-            endereco: newUserEndereco,
-            cidade: newUserCidade,
-            estado: newUserEstado,
+        let obj = {
+            id: "id",
+            nome: "nome",
+            email: "email",
+            senha: "senha",
+            username: "username",
+            endereco: "endereco",
+            cidade: "cidade",
+            estado: "estado"
         };
+        let users = usuarios;
+        users.push(obj);
+        setUsuarios(users);
 
-        setUsuarios([...usuarios, newUser]);
+        let atualizacao = usuarios;
+        atualizacao.nome = nome;
+        atualizacao.email = email;
+        atualizacao.senha = senha;
+        atualizaçao.username = username;
+        atualizacao.endereco = endereco;
+        atualizacao.cidade = cidade;
+        atualizacao.estado = estado;
+        setAtualizacao(atualizacao);
     }
 
     function apagarUsuario(cod) {
-        axios
-            .delete(url + cod)
-            .then(() => {
-                setUsuarios(usuarios.filter((item) => item.id !== cod));
-            })
-            .catch((erro) => console.log(erro));
+        axios.delete(url + cod).then(() => {
+            setUsuarios(usuarios.filter(item => item.id !== cod));
+        }).catch((erro) => console.log(erro));
     }
 
     function resetUsuario() {
-        setUsuarioLogado(null);
+        setUsuarioLogado('');
     }
 
     return (
@@ -158,7 +164,7 @@ export default function UserProvider({ children }) {
                 atualizacao,
                 resetUsuario,
                 setUsuarioLogado,
-                usuarioLogado
+                usuarioLogado,
             }}
         >
             {children}

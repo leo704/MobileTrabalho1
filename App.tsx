@@ -12,6 +12,7 @@ import styles from './src/components/Styles';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import UserProvider from './src/contexto/UserContext';
 import ProdProvider from './src/contexto/ProdutosContext';
+import EditarPerfil from './src/components/EditarPerfil';
 
 const navStack = createNativeStackNavigator();
 const navBottom = createBottomTabNavigator();
@@ -83,6 +84,11 @@ export default function App() {
             <navStack.Screen
               name="Logado"
               component={Logado}
+              options={{ headerShown: false }}
+            />
+            <navStack.Screen
+              name='EditarPerfil'
+              component={EditarPerfil}
               options={{ headerShown: false }}
             />
           </navStack.Navigator>
