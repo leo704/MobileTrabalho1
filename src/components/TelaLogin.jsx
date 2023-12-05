@@ -1,4 +1,4 @@
-﻿import React, { useState, useContext, useEffect } from 'react';
+﻿import React, {useState, useContext, useEffect} from 'react';
 import {
   View,
   TextInput,
@@ -10,17 +10,23 @@ import {
   ImageBackground,
   ScrollView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { Button } from 'react-native-elements';
-import { ContextoUser } from '../contexto/UserContext';
+import {useNavigation} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Button} from 'react-native-elements';
+import {ContextoUser} from '../contexto/UserContext';
 
 //instalar npm install react-native-elements
 
 const TelaLogin = () => {
   const [autenticar, setAutenticar] = useState(false);
   const nav = useNavigation();
-  const { usuarios, buscarUsuarios, setUsuarios, usuarioLogado, setUsuarioLogado } = useContext(ContextoUser);
+  const {
+    usuarios,
+    buscarUsuarios,
+    setUsuarios,
+    usuarioLogado,
+    setUsuarioLogado,
+  } = useContext(ContextoUser);
   const [usuario, setUsuario] = useState('');
   const [senha, setSenha] = useState('');
 
@@ -28,9 +34,14 @@ const TelaLogin = () => {
     buscarUsuarios();
   }, []);
 
-
   const FazLogin = () => {
-    const usuarioEncontrado = usuarios && usuarios.find((user) => ((user.username === usuario || user.email === usuario)) && user.senha === senha);
+    const usuarioEncontrado =
+      usuarios &&
+      usuarios.find(
+        user =>
+          (user.username === usuario || user.email === usuario) &&
+          user.senha === senha,
+      );
 
     if (usuarioEncontrado) {
       setUsuarioLogado(usuarioEncontrado);
@@ -49,7 +60,11 @@ const TelaLogin = () => {
           resizeMode="cover"
           style={styles.planoDeFundoTelaLogin}>
           <View style={styles.divLogo}>
-            <Image source={require('../assets/logo.png')} style={styles.logo} resizeMode="contain" />
+            <Image
+              source={require('../assets/logo.png')}
+              style={styles.logo}
+              resizeMode="contain"
+            />
           </View>
         </ImageBackground>
         <View style={styles.loginBox}>
@@ -64,7 +79,7 @@ const TelaLogin = () => {
               placeholder="Nome de usuário ou email"
               onChangeText={text => setUsuario(text)}
               value={usuario}
-              keyboardAppearance='dark'
+              keyboardAppearance="dark"
             />
           </View>
           <View>
@@ -88,7 +103,21 @@ const TelaLogin = () => {
               }
             }}
             buttonStyle={styles.botaoLogin}
-            titleStyle={{ fontSize: 30, fontWeight: 'bold', }}
+            titleStyle={{
+              fontSize: 20,
+              fontWeight: 'bold',
+              width: alturaJanela / 6,
+            }}
+          />
+          <Button
+            title="Registre-se"
+            onPress={() => nav.navigate('Criar Conta')}
+            buttonStyle={styles.botaoLogin}
+            titleStyle={{
+              fontSize: 20,
+              fontWeight: 'bold',
+              width: alturaJanela / 6,
+            }}
           />
         </View>
       </ScrollView>
@@ -146,19 +175,3 @@ const styles = StyleSheet.create({
 });
 
 export default TelaLogin;
-
-/*
-    .Adicionar elementos VISUAIS que simulem um login
-    .Estilizar
-        -Logo
-        -Entrada de usuário e senha
-        -Opção de logar com google
-*/
-
-/*
-backgroundColor: 'rgba(255,255,255,0.5)',
-flex:1,
-justifyContent:'center',
-borderRadius: 20,
-
-*/

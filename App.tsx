@@ -1,20 +1,21 @@
-﻿import { View, Text, StyleSheet } from 'react-native';
+﻿import {View, Text, StyleSheet} from 'react-native';
 import React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import TelaInicio from './src/components/TelaInicio';
 import TelaBuscar from './src/components/TelaBuscar';
 import TelaLogin from './src/components/TelaLogin';
 import TelaCarrinho from './src/components/TelaCarrinho';
 import TelaPerfil from './src/components/TelaPerfil';
+import TelaCriarConta from './src/components/TelaCriarConta';
 import styles from './src/components/Styles';
 import Icon from 'react-native-vector-icons/FontAwesome6';
 import UserProvider from './src/contexto/UserContext';
 import ProdProvider from './src/contexto/ProdutosContext';
 import EditarPerfil from './src/components/EditarPerfil';
 import TelaProduto from './src/components/TelaProduto';
-import { CarrinhoProvider } from './src/contexto/CarrinhoContext';
+import {CarrinhoProvider} from './src/contexto/CarrinhoContext';
 
 const navStack = createNativeStackNavigator();
 const navBottom = createBottomTabNavigator();
@@ -82,21 +83,24 @@ export default function App() {
               <navStack.Screen
                 name="Login"
                 component={TelaLogin}
-                options={{ headerShown: false }}
+                options={{headerShown: false}}
               />
               <navStack.Screen
                 name="Logado"
                 component={Logado}
-                options={{ headerShown: false }}
+                options={{headerShown: false}}
               />
               <navStack.Screen
-                name='EditarPerfil'
+                name="EditarPerfil"
                 component={EditarPerfil}
-                options={{ headerShown: false }}
+                options={{headerShown: false}}
               />
-              <navStack.Screen name='TelaProduto'
+              <navStack.Screen
+                name="TelaProduto"
                 component={TelaProduto}
-                options={{ headerShown: true }} />
+                options={{headerShown: true}}
+              />
+              <navStack.Screen name="Criar Conta" component={TelaCriarConta} />
             </navStack.Navigator>
           </CarrinhoProvider>
         </ProdProvider>
