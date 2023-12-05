@@ -28,8 +28,9 @@ const TelaLogin = () => {
     buscarUsuarios();
   }, []);
 
+
   const FazLogin = () => {
-    const usuarioEncontrado = usuarios && usuarios.find((user) => user.username === usuario && user.senha === senha);
+    const usuarioEncontrado = usuarios && usuarios.find((user) => ((user.username === usuario || user.email === usuario)) && user.senha === senha);
 
     if (usuarioEncontrado) {
       setUsuarioLogado(usuarioEncontrado);

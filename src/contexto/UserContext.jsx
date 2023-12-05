@@ -92,38 +92,46 @@ export default function UserProvider({ children }) {
 
     function atualizaListaUsuarioNovo(response) {
         console.log("atualizaListaUsuarioNovo", response.data);
-        const {
-            id: newUserId,
-            nome: newUserName,
-            email: newUserEmail,
-            senha: newUserSenha,
-            username: newUserUsername,
-            endereco: newUserEndereco,
-            cidade: newUserCidade,
-            estado: newUserEstado,
+        let {
+            id,
+            nome,
+            email,
+            senha,
+            username,
+            endereco,
+            cidade,
+            estado,
         } = response.data;
 
-        const newUser = {
-            id: newUserId,
-            nome: newUserName,
-            email: newUserEmail,
-            senha: newUserSenha,
-            username: newUserUsername,
-            endereco: newUserEndereco,
-            cidade: newUserCidade,
-            estado: newUserEstado,
+        let obj = {
+            id: "id",
+            nome: "nome",
+            email: "email",
+            senha: "senha",
+            username: "username",
+            endereco: "endereco",
+            cidade: "cidade",
+            estado: "estado"
         };
+        let users = usuarios;
+        users.push(obj);
+        setUsuarios(users);
 
-        setUsuarios([...usuarios, newUser]);
+        let atualizacao = usuarios;
+        atualizacao.nome = nome;
+        atualizacao.email = email;
+        atualizacao.senha = senha;
+        atualizaçao.username = username;
+        atualizacao.endereco = endereco;
+        atualizacao.cidade = cidade;
+        atualizacao.estado = estado;
+        setAtualizacao(atualizacao);
     }
 
     function apagarUsuario(cod) {
-        axios
-            .delete(url + cod)
-            .then(() => {
-                setUsuarios(usuarios.filter((item) => item.id !== cod));
-            })
-            .catch((erro) => console.log(erro));
+        axios.delete(url + cod).then(() => {
+            setUsuarios(usuarios.filter(item => item.id !== cod));
+        }).catch((erro) => console.log(erro));
     }
 
     function resetUsuario() {

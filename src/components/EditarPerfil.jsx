@@ -6,20 +6,24 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 export default function EditarPerfil(props) {
-    const { setId, setNome, setEmail, setSenha, setUsername, setEndereco, setCidade, setEstado, gravarDados, usuarioLogado, setUsuarioLogado } = useContext(ContextoUser);
-
-    const { id, nome, email, senha, username, endereco, cidade, estado } = props.route.params.usuarioLogado;
+    const { id, nome, email, senha, username, endereco, cidade, estado, setId, setNome, setEmail, setSenha, setUsername, setEndereco, setCidade, setEstado, gravarDados, usuarioLogado, setUsuarioLogado } = useContext(ContextoUser);
 
     useEffect(() => {
-        setId(id);
-        setNome(nome);
-        setEmail(email);
-        setSenha(senha);
-        setUsername(username);
-        setEndereco(endereco);
-        setCidade(cidade);
-        setEstado(estado);
-        console.log("setou id");
+
+        const rotadoProps = props.route.params.item;
+
+        if (rotadoProps && rotadoProps.id) {
+            setId(props.route.params.item.id.toString());
+            setNome(props.route.params.item.nome);
+            setEmail(props.route.params.item.email);
+            setSenha(props.route.params.item.senha);
+            setUsername(props.route.params.item.username);
+            setEndereco(props.route.params.item.endereco);
+            setCidade(props.route.params.item.cidade);
+            setEstado(props.route.params.item.estado);
+            console.log("setou id");
+        }
+
     }, []);
 
     return (

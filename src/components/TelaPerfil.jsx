@@ -1,11 +1,10 @@
-﻿import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, FlatList, RefreshControl } from 'react-native';
+﻿import React, { useContext, useEffect } from 'react';
+import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ListItem } from '@rneui/themed';
 import Icon from 'react-native-vector-icons/FontAwesome6'
 import { ContextoUser } from '../contexto/UserContext';
-import EditarPerfil from './EditarPerfil';
 
 export default function TelaPerfil(props) {
   const nav = useNavigation();
@@ -15,9 +14,11 @@ export default function TelaPerfil(props) {
     nav.navigate('Login');
   };
 
+  const { usuarioLogado, resetUsuario, atualizacao, apagarUsuario, setUsuarioLogado } = useContext(ContextoUser);
 
-  const { usuarioLogado, resetUsuario, atualizacao } = useContext(ContextoUser)
-
+  useEffect(() => {
+    setUsuarioLogado(usuarioLogado);
+  }, [atualizacao, usuarioLogado]);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -25,14 +26,14 @@ export default function TelaPerfil(props) {
       <FlatList
         data={[usuarioLogado]}
         extraData={atualizacao}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => (item.id ? item.id.toString() : 'chave')}
         ListHeaderComponent={() => (
           <View>
             <Text>Detalhes do Usuário:</Text>
           </View>
         )}
         renderItem={({ item }) => (
-          <ListItem bottomDivider>
+          <ListItem bottomDivider key={item.id ? item.id.toString() : 'chave'}>
             <ListItem.Content>
               <View>
                 <ListItem.Title>{item.nome}</ListItem.Title>
@@ -40,18 +41,14 @@ export default function TelaPerfil(props) {
                 <ListItem.Title>{item.endereco}</ListItem.Title>
                 <ListItem.Title>{item.cidade} - {item.estado}</ListItem.Title>
               </View>
+              <ListItem.ButtonGroup style={styles.botaoContainer} buttons={[
+                <Icon name='edit' size={20} color={'blue'} onPress={() => props.navigation.navigate("EditarPerfil", { item })} />,
+                <Icon name='trash-can' size={20} color={'red'} onPress={() => apagarUsuario(item.id)} />]} />
+
             </ListItem.Content>
           </ListItem>
         )}
       />
-
-      <View style={styles.botaoContainer}>
-        <Button
-          title="Editar Perfil"
-          onPress={() => nav.navigate("EditarPerfil", { usuarioLogado })}
-          color={'#32123f'}
-        />
-      </View>
       <View style={styles.botaoContainer}>
         <Button title='Fazer logout' onPress={logout} color={'#32123f'} />
       </View>
