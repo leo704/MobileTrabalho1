@@ -25,7 +25,7 @@ export default function TelaPerfil(props) {
       <FlatList
         data={[usuarioLogado]}
         extraData={atualizacao}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.id}
         ListHeaderComponent={() => (
           <View>
             <Text>Detalhes do Usuário:</Text>

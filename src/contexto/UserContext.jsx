@@ -5,7 +5,7 @@ export const ContextoUser = createContext();
 
 export default function UserProvider({ children }) {
     const [usuarios, setUsuarios] = useState([]);
-    const [atualizacao, setAtualizacao] = useState({});
+    const [atualizacao, setAtualizacao] = useState([{}]);
     const [id, setId] = useState('');
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');

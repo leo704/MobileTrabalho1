@@ -1,6 +1,7 @@
 ﻿import { View, Text, TextInput, Button } from 'react-native'
 import React, { useContext, useEffect } from 'react'
 import { ContextoUser } from '../contexto/UserContext'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
 
@@ -10,7 +11,7 @@ export default function EditarPerfil(props) {
     const { id, nome, email, senha, username, endereco, cidade, estado } = props.route.params.usuarioLogado;
 
     useEffect(() => {
-        setId(id.toString());
+        setId(id);
         setNome(nome);
         setEmail(email);
         setSenha(senha);
@@ -22,7 +23,7 @@ export default function EditarPerfil(props) {
     }, []);
 
     return (
-        <View>
+        <GestureHandlerRootView>
             <TextInput
                 style={{
                     height: 40,
@@ -129,6 +130,6 @@ export default function EditarPerfil(props) {
                     gravarDados();
                     props.navigation.goBack()
                 }} />
-        </View>
+        </GestureHandlerRootView>
     )
 }
