@@ -1,9 +1,9 @@
 ﻿import React, { useState, useContext } from 'react';
-import { View, TextInput, FlatList, Text, StyleSheet, Image } from 'react-native';
+import { View, TextInput, FlatList, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { ProdContext } from '../contexto/ProdutosContext';
 import TelaCarrinho from './TelaCarrinho';
 
-const TelaBuscar = () => {
+const TelaBuscar = (props) => {
   const { produtos } = useContext(ProdContext);
   const [pesquisa, setPesquisa] = useState('');
   const [resultadoPesquisa, setResultadoPesquisa] = useState([]);
@@ -39,7 +39,8 @@ const TelaBuscar = () => {
         data={resultadoPesquisa}
         renderItem={({ item }) => (
           <View style={styles.containerPesquisa}>
-            <Image source={{ uri: item.thumbnail }} style={styles.imagem} />
+            <TouchableOpacity onPress={() => props.navigation.navigate("TelaProduto", { item })}>
+              <Image source={{ uri: item.thumbnail }} style={styles.imagem} /></TouchableOpacity>
             <View style={{ flex: 1 }}>
               <Text style={{ fontSize: 20, fontWeight: 'bold', marginVertical: 5, color: 'black' }}>{item.title}</Text>
               <Text style={{ color: 'black' }}>de: {item.price}</Text>

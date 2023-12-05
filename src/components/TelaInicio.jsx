@@ -5,19 +5,23 @@
   ScrollView,
   Image,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native';
 import React, { useContext, useEffect } from 'react';
 import styles from './Styles';
 import Carousel from 'react-native-reanimated-carousel';
 import { ProdContext } from '../contexto/ProdutosContext';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/FontAwesome6'
 
-
-export default function TelaInicio() {
+export default function TelaInicio(props) {
 
   const width = Dimensions.get('window').width;
   const height = Dimensions.get('screen').height;
 
   const { produtos } = useContext(ProdContext);
+
+  const nav = useNavigation();
 
   return (
 
@@ -43,12 +47,14 @@ export default function TelaInicio() {
               <Text style={estilo.texto} >
                 PREÇO: ${item.price} DESCONTO: {item.discountPercentage}%
               </Text>
-              <Image
-                key={index}
-                style={{ width: '100%', height: '100%' }}
-                resizeMode="contain"
-                source={{ uri: item.thumbnail }}
-              />
+              <TouchableOpacity onPress={() => props.navigation.navigate("TelaProduto", { item })}>
+                <Image
+                  key={index}
+                  style={{ width: '100%', height: '100%' }}
+                  resizeMode="contain"
+                  source={{ uri: item.thumbnail }}
+                />
+              </TouchableOpacity>
             </View>
           )}
           style={{ alignSelf: 'center' }}
