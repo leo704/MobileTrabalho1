@@ -1,10 +1,10 @@
-﻿import React, { useContext, useEffect } from 'react';
-import { View, Text, Button, StyleSheet, FlatList } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { ListItem } from '@rneui/themed';
-import Icon from 'react-native-vector-icons/FontAwesome6'
-import { ContextoUser } from '../contexto/UserContext';
+﻿import React, {useContext, useEffect} from 'react';
+import {View, Text, Button, StyleSheet, FlatList, Alert} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {ListItem} from '@rneui/themed';
+import Icon from 'react-native-vector-icons/FontAwesome6';
+import {ContextoUser} from '../contexto/UserContext';
 
 export default function TelaPerfil(props) {
   const nav = useNavigation();
@@ -14,7 +14,19 @@ export default function TelaPerfil(props) {
     nav.navigate('Login');
   };
 
-  const { usuarioLogado, resetUsuario, atualizacao, apagarUsuario, setUsuarioLogado } = useContext(ContextoUser);
+  const apagaPerfil = () => {
+    resetUsuario();
+    nav.navigate('Login');
+    Alert.alert;
+  };
+
+  const {
+    usuarioLogado,
+    resetUsuario,
+    atualizacao,
+    apagarUsuario,
+    setUsuarioLogado,
+  } = useContext(ContextoUser);
 
   useEffect(() => {
     setUsuarioLogado(usuarioLogado);
@@ -26,31 +38,69 @@ export default function TelaPerfil(props) {
       <FlatList
         data={[usuarioLogado]}
         extraData={atualizacao}
-        keyExtractor={(item) => (item.id ? item.id.toString() : 'chave')}
+        keyExtractor={item => (item.id ? item.id.toString() : 'chave')}
         ListHeaderComponent={() => (
           <View>
             <Text>Detalhes do Usuário:</Text>
           </View>
         )}
-        renderItem={({ item }) => (
+        renderItem={({item}) => (
           <ListItem bottomDivider key={item.id ? item.id.toString() : 'chave'}>
             <ListItem.Content>
               <View>
                 <ListItem.Title>{item.nome}</ListItem.Title>
                 <ListItem.Title>{item.email}</ListItem.Title>
                 <ListItem.Title>{item.endereco}</ListItem.Title>
-                <ListItem.Title>{item.cidade} - {item.estado}</ListItem.Title>
+                <ListItem.Title>
+                  {item.cidade} - {item.estado}
+                </ListItem.Title>
               </View>
-              <ListItem.ButtonGroup style={styles.botaoContainer} buttons={[
-                <Icon name='edit' size={20} color={'blue'} onPress={() => props.navigation.navigate("EditarPerfil", { item })} />,
-                <Icon name='trash-can' size={20} color={'red'} onPress={() => apagarUsuario(item.id)} />]} />
-
+              <ListItem.ButtonGroup
+                style={styles.botaoContainer}
+                buttons={[
+                  <Icon
+                    name="edit"
+                    size={20}
+                    color={'blue'}
+                    onPress={() =>
+                      props.navigation.navigate('EditarPerfil', {item})
+                    }
+                  />,
+                  <Icon
+                    name="trash-can"
+                    size={20}
+                    color={'red'}
+                    /*onPress={() => {
+                      apagarUsuario(item.id);
+                      logout();
+                    }}*/
+                    onPress={() => {
+                      Alert.alert(
+                        'Deletar conta',
+                        'Tem certeza?',
+                        [
+                          {
+                            text: 'Sim',
+                            onPress: () => {
+                              apagarUsuario(item.id);
+                              logout();
+                            },
+                          },
+                        ],
+                        {
+                          cancelable: true,
+                        },
+                      );
+                    }}
+                  />,
+                ]}
+              />
             </ListItem.Content>
           </ListItem>
         )}
       />
       <View style={styles.botaoContainer}>
-        <Button title='Fazer logout' onPress={logout} color={'#32123f'} />
+        <Button title="Fazer logout" onPress={logout} color={'#32123f'} />
       </View>
     </SafeAreaView>
   );
@@ -75,12 +125,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 16,
     marginHorizontal: 16,
-    color: '#32123f'
+    color: '#32123f',
   },
   content: {
     flex: 1,
   },
   botaoContainer: {
-    padding: 16
+    padding: 16,
   },
 });

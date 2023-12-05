@@ -120,6 +120,7 @@ export default function UserProvider({children}) {
   }
 
   function apagarUsuario(cod) {
+    console.log(cod);
     axios
       .delete(url + cod)
       .then(() => {

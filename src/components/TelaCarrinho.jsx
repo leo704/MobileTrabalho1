@@ -1,26 +1,11 @@
-import { View, Text, FlatList } from 'react-native'
-import React, { useContext } from 'react'
-import styles from './Styles'
-import { ContextoCarrinho } from '../contexto/CarrinhoContext';
+import {View, Text, FlatList} from 'react-native';
+import React, {useContext} from 'react';
+import styles from './Styles';
 
-
-export default function TelaCarrinho(props) {
-
-  const [itensCarrinho] = useContext(ContextoCarrinho);
-
+export default function TelaCarrinho() {
   return (
     <View style={styles.todasTelas}>
-      <Text>Itens no Carrinho:</Text>
-      <FlatList
-        data={itensCarrinho}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.title}</Text>
-            <Text>Preço: R$ {item.price}</Text>
-          </View>
-        )}
-      />
+      <Text>Carrinho vazio</Text>
     </View>
-  )
+  );
 }
