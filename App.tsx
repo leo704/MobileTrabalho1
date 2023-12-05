@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/FontAwesome6';
 import UserProvider from './src/contexto/UserContext';
 import ProdProvider from './src/contexto/ProdutosContext';
 import EditarPerfil from './src/components/EditarPerfil';
+import TelaProduto from './src/components/TelaProduto';
+import { CarrinhoProvider } from './src/contexto/CarrinhoContext';
 
 const navStack = createNativeStackNavigator();
 const navBottom = createBottomTabNavigator();
@@ -75,23 +77,28 @@ export default function App() {
     <NavigationContainer>
       <UserProvider>
         <ProdProvider>
-          <navStack.Navigator initialRouteName="Login">
-            <navStack.Screen
-              name="Login"
-              component={TelaLogin}
-              options={{ headerShown: false }}
-            />
-            <navStack.Screen
-              name="Logado"
-              component={Logado}
-              options={{ headerShown: false }}
-            />
-            <navStack.Screen
-              name='EditarPerfil'
-              component={EditarPerfil}
-              options={{ headerShown: false }}
-            />
-          </navStack.Navigator>
+          <CarrinhoProvider>
+            <navStack.Navigator initialRouteName="Login">
+              <navStack.Screen
+                name="Login"
+                component={TelaLogin}
+                options={{ headerShown: false }}
+              />
+              <navStack.Screen
+                name="Logado"
+                component={Logado}
+                options={{ headerShown: false }}
+              />
+              <navStack.Screen
+                name='EditarPerfil'
+                component={EditarPerfil}
+                options={{ headerShown: false }}
+              />
+              <navStack.Screen name='TelaProduto'
+                component={TelaProduto}
+                options={{ headerShown: true }} />
+            </navStack.Navigator>
+          </CarrinhoProvider>
         </ProdProvider>
       </UserProvider>
     </NavigationContainer>
