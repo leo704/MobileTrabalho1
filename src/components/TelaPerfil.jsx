@@ -1,7 +1,7 @@
-﻿import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { ContextoUser } from '../contexto/UserContext';
+﻿import React, {useContext, useState, useEffect} from 'react';
+import {View, Text, Button, StyleSheet} from 'react-native';
+import {useNavigation} from '@react-navigation/native';
+import {ContextoUser} from '../contexto/UserContext';
 
 export default function TelaPerfil() {
   const nav = useNavigation();
@@ -11,9 +11,7 @@ export default function TelaPerfil() {
     nav.navigate('Login');
   };
 
-
-  const { usuarioLogado, resetUsuario } = useContext(ContextoUser);
-
+  const {usuarioLogado, resetUsuario} = useContext(ContextoUser);
 
   return (
     <View style={styles.container}>
@@ -22,7 +20,7 @@ export default function TelaPerfil() {
         <Text>Email: {usuarioLogado.email}</Text>
       </View>
       <View style={styles.botaoContainer}>
-        <Button title='Fazer logout' onPress={logout} color={'#32123f'} />
+        <Button title="Fazer logout" onPress={logout} color={'#32123f'} />
       </View>
     </View>
   );
@@ -47,12 +45,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 16,
     marginHorizontal: 16,
-    color: '#32123f'
+    color: '#32123f',
   },
   content: {
     flex: 1,
   },
   botaoContainer: {
-    padding: 16
+    padding: 16,
   },
 });
